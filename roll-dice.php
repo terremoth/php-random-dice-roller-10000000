@@ -12,7 +12,7 @@ $i = 0;
 $dado = array_fill(1, 6, 0);
 
 while ($timesDiceRolls > $i) {
-    $result = rand(1,6);
+    $result = mt_rand(1,6);
     $dado[$result]++;
     $i++;
 }
@@ -28,7 +28,7 @@ echo 'Dice rolled ' . $formatedRolledTImes . ' times';
 if (php_sapi_name() == "cli") exit();
 ?>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <canvas id="myChart" width="400" height="400"></canvas>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');
@@ -45,7 +45,9 @@ if (php_sapi_name() == "cli") exit();
         },
         options: {
             responsive: false,
-            maintainAspectRatio: false
+            //maintainAspectRatio: false,
+            scales: {y: {beginAtZero: true}},
+            ticks: { min: 0 }
         }
     });
 
